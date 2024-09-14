@@ -31,7 +31,7 @@ jobs:
     needs: [ prepare ]
     strategy:
       matrix:
-        run: ${{ contains(fromJSON(needs.prepare.outputs.linters), 'gomodtidy') && fromJson('["gomodtidy"]') || fromJson('[]') }}
+        run: ${{ contains(fromJSON(needs.prepare.outputs.linters), 'gomodtidy') && fromJson('["gomodtidy", "foobar"]') || fromJson('[]') }}
         exclude:
           - run: gomodtidy
     steps:
