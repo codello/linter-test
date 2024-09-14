@@ -31,7 +31,9 @@ jobs:
     needs: [ prepare ]
     strategy:
       matrix:
-        run: ${{ contains(fromJSON(needs.prepare.outputs.linters), 'gomodtidy') && fromJson('["ok"]') || fromJson('[]') }}
+        run: ${{ contains(fromJSON(needs.prepare.outputs.linters), 'gomodtidy') && fromJson('["gomodtidy"]') || fromJson('[]') }}
+        exclude:
+          - run: gomodtidy
     steps:
       - name: Check out code
         uses: actions/checkout@v4
